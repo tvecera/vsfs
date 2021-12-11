@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bastlířský toolbox - Online Base64 ENCODE / DECODE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description"
+          content="Online dekódování a kódování Base64 řetězce. Base64 je kódování, které převádí binární data na posloupnosti tisknutelných znaků."/>
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <meta name="author" content="Tomáš Večeřa"/>
+    <meta property="og:title" content="Bastlířský toolbox - Online Base64 ENCODE / DECODE"/>
+    <meta property="og:locale" content="cs_CZ"/>
+    <meta property="og:description"
+          content="Online dekódování a kódování Base64 řetězce. Base64 je kódování, které převádí binární data na posloupnosti tisknutelných znaků."/>
+    <meta property="og:url" content="https://probastlire.cz/"/>
+    <meta property="og:site_name" content="Bastlířský toolbox"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://probastlire.cz/assets/images/logo.svg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:title" content="Bastlířský toolbox - Online Base64 ENCODE / DECODE"/>
+    <meta property="twitter:image" content="https://probastlire.cz/assets/images/logo.svg"/>
+    <meta name="twitter:site" content="@veceratomas"/>
+    <meta name="twitter:creator" content="@veceratomas"/>
+
+    <script src="assets/js/script.js"></script>
+</head>
+
+<body>
+<div id="layout" class="row">
+    <div class="sidebar col-12 col-lg-3">
+        <div class="header">
+            <h1>Bastlířský toolbox</h1>
+            <img class="img" src="assets/images/logo.svg" alt="Logo"/>
+            <h2>Vše, co budete potřebovat pro své bastlení.</h2>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Base64</a></li>
+                <li><a href="uuid-generator.html">UUID</a></li>
+                <li><a href="password-generator.html">Password</a></li>
+                <li><a href="battery-life.html">Battery life</a></li>
+            </ul>
+        </nav>
+        <div class="footer">Autor: <a href="https://tomasvecera.cz">Tomáš Večeřa</a></div>
+    </div>
+    <div class="content col-12 col-lg-9">
+        <section class="content-header">
+            <h2>Base64 ENCODE / DECODE</h2>
+            <p><strong>Base64</strong> je kódování, které převádí binární data na posloupnosti tisknutelných znaků.
+                Umožňuje přenos
+                binárních dat kanály, které dovolují pouze přenos textů. Používá se například v rozšíření MIME pro
+                přenos e-mailů původně 7bitovým poštovním systémem v Internetu. Je definováno v
+                <a href="https://datatracker.ietf.org/doc/html/rfc4648">RFC 4648</a>.</p>
+            <p>Base64 kóduje vždy tři oktety binárních dat pomocí čtyř ASCII znaků. Ke kódování používá 64prvkovou sadu
+                znaků tvořenou velkými i malými písmeny anglické abecedy, číslicemi a znaky plus ('+') a lomítko ('/').
+                Pokud počet oktetů původních dat není dělitelný třemi, doplňuje na konec zakódovaného textu jedno nebo
+                dvě rovnítka ('=').</p>
+            <cite>Zdroj: Wikipedia - <a
+                    href="https://cs.wikipedia.org/wiki/Base64">https://cs.wikipedia.org/wiki/Base64</a></cite>
+            <h3>Nápověda</h3>
+            <div class="icon-tips">
+                <p><i class="material-icons active">bolt</i> aktivace / deaktivace automatické konverze</p>
+                <p><i class="material-icons">content_copy</i> zkopíruje celý / vybraný text do schránky</p>
+                <p><i class="material-icons">save</i> uloží obsah do souboru</p>
+                <p><i class="material-icons">clear</i> smaže obsah</p>
+            </div>
+            <ul>
+                <li>Maximální počet znaků: <strong>50 000</strong></li>
+                <li><strong>length</strong>: délka řetězce včetně odřádkování</li>
+                <li><strong>lines</strong>: počet řádků</li>
+                <li><strong>selected</strong>: [0] 0 - [0] - pozice kurzoru, 0 - délka vybraného řetězce</li>
+            </ul>
+            <div class="error">
+                <i class="material-icons">error</i>
+                <p></p>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="m-2 m-left-md-1">
+                    <div class="textarea-title row">
+                        <div class="col-3">
+                            <label for="textarea-input">Input</label>
+                        </div>
+                        <div class="col-2 meta">
+                            <p>length:</p>
+                            <p>lines:</p>
+                            <p>selected:</p>
+                        </div>
+                        <div class="col-2 meta stat" data-textarea-id="textarea-input">
+                            <p>0</p>
+                            <p>0</p>
+                            <p>[0] 0</p>
+                        </div>
+                        <div class="col-5 icons" data-textarea-id="textarea-input">
+                            <button title="Zapnout / Vypnout automatickou konverzi"
+                                    class="icon-bolt material-icons active">bolt
+                            </button>
+                            <button title="Copie do schránky" class="icon-copy material-icons">content_copy</button>
+                            <button title="Uložení do souboru" class="icon-save material-icons">save</button>
+                            <button title="Smazaní obsahu" class="icon-clear material-icons">clear</button>
+                        </div>
+                    </div>
+                    <div class="textarea-wrapper">
+                    <textarea id="textarea-input" rows="20" name="input" data-realtime="1"
+                              data-function="encodeBase64" maxlength="50000" spellcheck="false"></textarea>
+                    </div>
+                    <button id="button-input" class="button button-error">Encode</button>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="m-2 m-right-md-1">
+                    <div class="textarea-title row">
+                        <div class="col-3">
+                            <label for="textarea-output">Output</label>
+                        </div>
+                        <div class="col-2 meta">
+                            <p>length:</p>
+                            <p>lines:</p>
+                            <p>selected:</p>
+                        </div>
+                        <div class="col-2 meta stat" data-textarea-id="textarea-output">
+                            <p>0</p>
+                            <p>0</p>
+                            <p>[0] 0</p>
+                        </div>
+                        <div class="col-5 icons" data-textarea-id="textarea-output">
+                            <button title="Copie do schránky" class="icon-copy material-icons">content_copy</button>
+                            <button title="Uložení do souboru" class="icon-save material-icons">save</button>
+                            <button title="Smazaní obsahu" class="icon-clear material-icons">clear</button>
+                        </div>
+                    </div>
+                    <div class="textarea-wrapper">
+                    <textarea id="textarea-output" rows="20" name="output" data-realtime="1"
+                              data-function="decodeBase64" maxlength="50000" spellcheck="false"></textarea>
+                    </div>
+                    <button id="button-output" class="button button-error">Decode</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/base64.js"></script>
+</div>
+</body>
+</html>

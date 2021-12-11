@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bastlířský toolbox - Online UUID v4 generátor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description"
+          content="UUID v4 online generátor. UUID (Univerzální unikátní identifikátor) je 128bitové číslo používané k identifikaci informací v počítačových systémech, dnes hodně využívané pro primární klíče. Identifikátor by měl být vždy unikátní, bez ohledu na to, v jakém systému vznikne."/>
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <meta name="author" content="Tomáš Večeřa"/>
+    <link rel="canonical" href="https://probastlire.cz/uuid-generator"/>
+    <meta property="og:title" content="Bastlířský toolbox - Online UUID v4 generátor"/>
+    <meta property="og:locale" content="cs_CZ"/>
+    <meta property="og:description"
+          content="UUID v4 online generátor. UUID (Univerzální unikátní identifikátor) je 128bitové číslo používané k identifikaci informací v počítačových systémech, dnes hodně využívané pro primární klíče. Identifikátor by měl být vždy unikátní, bez ohledu na to, v jakém systému vznikne."/>
+    <meta property="og:url" content="https://probastlire.cz/uuid-generator"/>
+    <meta property="og:site_name" content="Bastlířský toolbox"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://probastlire.cz/assets/images/logo.svg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:title" content="Bastlířský toolbox - Online UUID v4 generátor"/>
+    <meta property="twitter:image" content="https://probastlire.cz/assets/images/logo.svg"/>
+    <meta name="twitter:site" content="@veceratomas"/>
+    <meta name="twitter:creator" content="@veceratomas"/>
+
+    <script src="assets/js/script.js"></script>
+</head>
+
+<body>
+<div id="layout" class="row">
+    <div class="sidebar col-12 col-lg-3">
+        <div class="header">
+            <h1>Bastlířský toolbox</h1>
+            <img class="img" src="assets/images/logo.svg" alt="Logo"/>
+            <h2>Vše, co budete potřebovat pro své bastlení.</h2>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Base64</a></li>
+                <li><a href="uuid-generator.html">UUID</a></li>
+                <li><a href="password-generator.html">Password</a></li>
+                <li><a href="battery-life.html">Battery life</a></li>
+            </ul>
+        </nav>
+        <div class="footer">Autor: <a href="https://tomasvecera.cz">Tomáš Večeřa</a></div>
+    </div>
+    <div class="content col-12 col-lg-9">
+        <section class="content-header">
+            <h2>UUID4 generátor</h2>
+            <p><strong>Univerzální unikátní identifikátor</strong> (anglicky Universally Unique Identifier zkr. UUID
+                nebo také anglicky
+                Globally Unique Identifier zkr. GUID) je 128bitové číslo používané k identifikaci informací v
+                počítačových systémech. Když jsou UUID generovány podle standardních metod, jsou pro praktické účely
+                jedinečné. Jejich jedinečnost nezávisí na ústředním registračním orgánu, nebo koordinaci mezi stranami,
+                které je vytvářejí. I když není nulová pravděpodobnost, že UUID může existovat duplicitně, je taková
+                možnost dostatečně blízká nule, aby byla zanedbatelná. Kdokoli tedy může vygenerovat UUID pro svoji
+                potřebu a použít jej k identifikaci něčeho s jistotou, že identifikátor se nebude shodovat s UUID pro
+                identifikaci něčeho jiného. Informace označené UUID nezávislými stranami mohou být proto později
+                sloučeny do společné databáze se zanedbatelnou pravděpodobností duplikátů.</p>
+            <p>Přijetí <strong>UUID</strong> je rozšířené a mnoho výpočetních platforem poskytuje podporu pro jejich
+                generování a pro
+                analýzu jejich textové reprezentace.</p>
+            <cite>Zdroj: Wikipedia - <a
+                    href="https://cs.wikipedia.org/wiki/Univerz%C3%A1ln%C3%AD_unik%C3%A1tn%C3%AD_identifik%C3%A1tor">https://cs.wikipedia.org/wiki/Univerzální_unikátní_identifikátor</a></cite>
+            <h3>Nápověda</h3>
+            <div class="icon-tips">
+                <p><i class="material-icons">content_copy</i> zkopíruje celý / vybraný text do schránky</p>
+                <p><i class="material-icons">save</i> uloží obsah do souboru</p>
+                <p><i class="material-icons">clear</i> smaže obsah</p>
+            </div>
+            <ul>
+                <li>Maximální počet znaků: <strong>50 000</strong></li>
+                <li><strong>length</strong>: délka řetězce včetně odřádkování</li>
+                <li><strong>lines</strong>: počet řádků</li>
+                <li><strong>selected</strong>: [0] 0 - [0] - pozice kurzoru, 0 - délka vybraného řetězce</li>
+            </ul>
+        </section>
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="m-2 m-left-md-1">
+                    <form class="form form-stacked">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="count">Počet</label>
+                                    <input type="number" id="count" required min="1" value="10"/>
+                                </div>
+                                <div class="col-4">
+                                    <label for="delimiter">Oddělovač</label>
+                                    <select id="delimiter">
+                                        <option value="1">\n</option>
+                                        <option value="2">space</option>
+                                        <option value="3">,</option>
+                                        <option value="4">;</option>
+                                        <option value="5">"",</option>
+                                        <option value="6">"";</option>
+                                        <option value="7">""\n</option>
+                                        <option value="8">""</option>
+                                        <option value="9">JSON</option>
+                                    </select>
+                                </div>
+                                <div class="col-5 action-button">
+                                    <button type="submit" id="button-generate" class="button button-error">Generate
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8">
+                <div class="m-2 m-right-md-1">
+                    <div class="textarea-title row">
+                        <div class="col-3">
+                            <label for="textarea-output">Output</label>
+                        </div>
+                        <div class="col-2 meta">
+                            <p>length:</p>
+                            <p>lines:</p>
+                            <p>selected:</p>
+                        </div>
+                        <div class="col-2 meta stat" data-textarea-id="textarea-output">
+                            <p>0</p>
+                            <p>0</p>
+                            <p>[0] 0</p>
+                        </div>
+                        <div class="col-5 icons" data-textarea-id="textarea-output">
+                            <button title="Copie do schránky" class="icon-copy material-icons">content_copy</button>
+                            <button title="Uložení do souboru" class="icon-save material-icons">save</button>
+                            <button title="Smazaní obsahu" class="icon-clear material-icons">clear</button>
+                        </div>
+                    </div>
+                    <div class="textarea-wrapper">
+                    <textarea id="textarea-output" class="mono" rows="20" name="output" data-realtime="0"
+                              data-function="decodeBase64" maxlength="50000" readonly spellcheck="false"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/uuid.js"></script>
+</div>
+</body>
+</html>

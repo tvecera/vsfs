@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bastlířský toolbox - Online battery life kalkulátor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Orientační kalkulačka výdrže běhu vašeho zařízení na baterii. Výpočet doby běhu na baterie u vlastních čidel a různých IoT zařízení." />
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <meta name="author" content="Tomáš Večeřa" />
+    <link rel="canonical" href="https://probastlire.cz/battery-life" />
+    <meta property="og:title" content="Bastlířský toolbox - Online battery life kalkulátor" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:description" content="Orientační kalkulačka výdrže běhu vašeho zařízení na baterii. Výpočet doby běhu na baterie u vlastních čidel a různých IoT zařízení." />
+    <meta property="og:url" content="https://probastlire.cz/battery-life" />
+    <meta property="og:site_name" content="Bastlířský toolbox" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://probastlire.cz/assets/images/logo.svg"/>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Bastlířský toolbox - Online battery life kalkulátor" />
+    <meta property="twitter:image" content="https://probastlire.cz/assets/images/logo.svg" />
+    <meta name="twitter:site" content="@veceratomas" />
+    <meta name="twitter:creator" content="@veceratomas" />
+
+    <script src="assets/js/script.js"></script>
+</head>
+
+<body>
+<div id="layout" class="row">
+    <div class="sidebar col-12 col-lg-3">
+        <div class="header">
+            <h1>Bastlířský toolbox</h1>
+            <img class="img" src="assets/images/logo.svg" alt="Logo"/>
+            <h2>Vše, co budete potřebovat pro své bastlení.</h2>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Base64</a></li>
+                <li><a href="uuid-generator.html">UUID</a></li>
+                <li><a href="password-generator.html">Password</a></li>
+                <li><a href="battery-life.html">Battery life</a></li>
+            </ul>
+        </nav>
+        <div class="footer">Autor: <a href="https://tomasvecera.cz">Tomáš Večeřa</a></div>
+    </div>
+    <div class="content col-12 col-lg-9">
+        <section class="content-header">
+            <h2>Kalkulačka životnosti baterie</h2>
+            <p>Orientační kalkulačka výdrže běhu vašeho zařízení na baterii. Je vhodná především na výpočet běhu na baterie u
+                vlastních čidel a IoT postavených na různých mikrokontrolorech a modulech jako je <strong>ESP32</strong>,
+                <strong>ATTiny 85</strong> atd.</p>
+                <p>Důležité je vyplnit reálnou kapacitu použité baterie. K tomu můžete použít vybíjecí křivky zvolené baterie
+                (pro mnoho baterií jsou k dispozici na internetu, pozor mění se s teplotou, tzn. pro zařízení které běží v
+                chladu musíte počítat s výrazně menší reální kapacitou baterie). Vaše zařízení není schopné většinou využít
+                plnou kapacitu baterie, protože min. bezpečné napětí pro ESP32 je kolem 2.3V. Hezkou, i když dnes už ne moc
+                    aktuální, stránku s testy baterií najdete <a href="http://www.nejlepsi-baterie.cz/">tady</a>.</p>
+                <p>Pozor na jednotky!!!</p>
+        </section>
+        <div class="row">
+            <div class="col-12 col-xl-5">
+                <div class="m-2 m-left-md-1">
+                    <form class="form form-aligned battery">
+                        <div class="flex-row flex-right">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="battery-capacity" class="input">Kapacita baterie [<strong>mAh</strong>]:
+                                    </label>
+                                    <input id="battery-capacity" class="w-6" type="number" name="battery-capacity"
+                                           required
+                                           min="1" max="200000"
+                                           value="2400"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="real-battery-capacity" class="input">Reálná kapacita baterie
+                                        [<strong>%</strong>]:
+                                    </label>
+                                    <input id="real-battery-capacity" class="w-6" type="number"
+                                           name="real-battery-capacity"
+                                           required
+                                           min="1" max="100"
+                                           value="85"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="consumption-in-sleep" class="input">Spotřeba ve spánku
+                                        [<strong>µA</strong>]:</label>
+                                    <input id="consumption-in-sleep" class="w-6" type="number"
+                                           name="consumption-in-sleep"
+                                           required
+                                           min="0" max="200000" step="0.1"
+                                           value="4.5"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="consumption-in-wake" class="input">Spotřeba při probuzení
+                                        [<strong>mA</strong>]:</label>
+                                    <input id="consumption-in-wake" class="w-6" type="number" name="consumption-in-wake"
+                                           required
+                                           min="0" max="200000" step="0.1"
+                                           value="20.5"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="duration" class="input">Doba probuzení [<strong>ms</strong>]:</label>
+                                    <input id="duration" class="w-6" type="number" name="duration" required min="0"
+                                           max="200000"
+                                           step="1"
+                                           value="100"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="wake-ups" class="input">Počet probuzení za hodinu:<br/></label>
+                                    <input id="wake-ups" class="w-6" type="number" name="wake-ups" required min="0"
+                                           max="3600"
+                                           step="1"
+                                           value="3600"/>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" id="button-generate" class="button button-error">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="battery-result">
+                        <h3>Výsledek</h3>
+                        <ul>
+                            <li>Hodin:&nbsp;<span id="hours">0.0</span></li>
+                            <li>Dnů:&nbsp;<span id="days">0.0</span></li>
+                            <li>Měsíců:&nbsp;<span id="months">0.0</span></li>
+                            <li>Let:&nbsp;<span id="years">0.0</span></li>
+                        </ul>
+                    </div>
+                    <div class="error">
+                        <i class="material-icons">error</i>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-7 battery-info">
+                <h3>Kapacita baterií</h3>
+                <p class="text">Orientační kapacita baterií dle jejich typu. Pro konkrétní typ, značku se může reálná
+                    kapacita výrazně lišit.</p>
+                <div class="flex-row">
+                    <div class="battery-img">
+                        <img src="assets/images/battery-coin.svg" height="150" alt="Konflíková baterie"/>
+                        <p>220 mA</p>
+                    </div>
+                    <div class="battery-img">
+                        <img src="assets/images/battery-aaa.svg" height="150" alt="Baterie typu AAA"/>
+                        <p>1000 mA</p>
+                    </div>
+                    <div class="battery-img">
+                        <img src="assets/images/battery-aa.svg" height="150" alt="Baterie typu AA"/>
+                        <p>2500 mA</p>
+                    </div>
+                    <div class="battery-img">
+                        <img src="assets/images/battery-c.svg" height="150" alt="Baterie typu C"/>
+                        <p>3000 mA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/battery.js"></script>
+</div>
+</body>
+</html>
