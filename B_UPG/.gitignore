@@ -1,0 +1,5 @@
+bin
+obj
+*.dat
+*.txt
+.vs
